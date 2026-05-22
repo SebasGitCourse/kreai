@@ -1,0 +1,268 @@
+/* Estilos base compartidos por TODOS los componentes de actividad */
+/* Cada actividad importa este archivo + el archivo de sus propios estilos */
+
+.act__header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background-color: #fff;
+    z-index: 5;
+}
+
+.act__volver {
+    background: none;
+    border: 1px solid #df4568;
+    color: #df4568;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: fit-content;
+    border-radius: 0.5rem;
+    padding: 0.2rem 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    position: relative;
+}
+
+.act__volver:hover {
+    background-color: #df4568;
+    color: #fff;
+}
+
+.act__titulo {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    font-weight: 500;
+    color: #000;
+}
+
+.act__seccion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.act__seccion-titulo {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #00000080;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.act__form-fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.act__label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #000;
+    flex: 1;
+    min-width: 250px;
+    max-width: 250px;
+    /* background-color: #fff;
+    border: 1px solid #df4568; */
+    border: none;
+    border-radius: 5px;
+}
+
+.act__input,
+.act__select {
+    background: #df456810;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    color: #000;
+    font-family: inherit;
+    font-size: 0.8rem;
+    padding: 0.8rem;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.act__input:focus,
+.act__select:focus,
+.act__textarea:focus {
+    outline: none;
+    border-color: #df4568;
+}
+
+.act__textarea {
+    background: #df456810;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    color: #000;
+    font-family: inherit;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    resize: none;
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    margin-top: 0.5rem;
+    box-sizing: border-box;
+}
+
+.act__btn-ia {
+    font-family: inherit;
+    background: #df4568;
+    border: 1px solid transparent;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+    width: fit-content;
+}
+
+.act__btn-ia:disabled {
+    /* opacity: 0.5; */
+    cursor: default;
+}
+
+.act__spinner {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: girar-act 0.8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes girar-act {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.act__error {
+    color: #df4568;
+    font-size: 0.8rem;
+}
+
+.act__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.act__chip-editable {
+    display: flex;
+    align-items: center;
+    background: #df456810;
+    border: 1px solid #df4568;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.act__chip-input {
+    background: none;
+    border: none;
+    color: #000;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.4rem 0.5rem;
+    max-width: 100px;
+    outline: none;
+}
+
+.act__chip-quitar {
+    background: none;
+    border: none;
+    color: #00000080;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.act__chip-quitar:hover {
+    color: #df4568;
+}
+
+.act__agregar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    & > .act__input {
+        max-width: 300px;
+    }
+}
+
+.act__btn-agregar {
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    background: #df4568;
+    border: none;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+    cursor: pointer;
+    width: 100%;
+    max-width: fit-content;
+    height: fit-content;
+}
+
+.act__acciones {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.act__btn-generar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #df4568;
+    border: none;
+    color: #fff;
+    border-radius: 5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.act__btn-generar:disabled {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .act__acciones {
+        justify-content: center;
+    }
+}

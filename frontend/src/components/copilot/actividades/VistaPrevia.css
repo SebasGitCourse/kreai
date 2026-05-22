@@ -1,0 +1,445 @@
+.vista-previa {
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100dvh;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.vp__header > .act__titulo {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.vp__preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.vp__acciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: transparent;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.vp__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    width: 100%;
+    max-width: 220px;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    background-color: transparent;
+    color: #00000080;
+    border: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.vp__btn--primario {
+    background-color: #df456810;
+}
+
+.vp__btn--secundario {
+    border: 2px solid #df456810;
+}
+
+.vp__btn--neutro {
+    max-width: 100px;
+    background-color: #df4568;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.vp__info {
+    color: #df4568;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+/* Sopa de letras */
+.vp__sopa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.vp__grilla {
+    border-collapse: separate;
+}
+
+.vp__celda {
+    width: 1.8rem;
+    height: 1.8rem;
+    text-align: center;
+    font-size: 0.5rem;
+    border: 1px solid #df4568;
+    color: #000;
+    font-weight: 700;
+    background-color: #ffffff90;
+}
+
+.vp__celda--res {
+    background-color: #df4568;
+    color: #fff;
+    border: 1px solid #000;
+}
+
+.vp__lista-palabras {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.vp__lista-palabras h4 {
+    font-size: 0.8rem;
+    color: #df4568;
+    text-align: center;
+}
+
+.vp__lista-palabras ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: start;
+    padding: 0 1rem;
+    width: inherit;
+}
+
+.vp__lista-palabras li {
+    min-width: 85px;
+    max-width: 85px;
+    font-size: 0.7rem;
+    overflow-wrap: break-word;
+    color: #000;
+    border: none;
+    padding: 0.2rem 0.5rem;
+    list-style: none;
+    text-transform: lowercase;
+
+    &::first-letter {
+        color: #df4568;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+}
+
+.vp__pal-encontrada {
+    color: #00000080 !important;
+}
+
+/* Crucigrama */
+.vp__crucigrama {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.vp__celda-cruz {
+    position: relative;
+    vertical-align: top;
+    height: 2rem;
+    width: 2rem;
+    background-color: #fff;
+    border: 2px solid #df4568;
+}
+
+.vp__celda-negra {
+    background: transparent;
+    border: none;
+}
+
+.vp__numero {
+    font-size: 0.5rem;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    line-height: 1;
+    color: #00000080;
+    font-weight: 700;
+}
+
+.vp__letra-cruz {
+    font-size: 0.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #000;
+}
+
+.vp__pistas {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.vp__pistas-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    max-width: 350px;
+}
+
+.vp__pistas-col h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: #df4568;
+    width: 100%;
+}
+
+.vp__pista {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+
+    & > strong {
+        color: #df4568;
+    }
+}
+
+/* Verdadero o falso */
+.vp__vf {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    font-size: clamp(0.5rem, 2.5vw, 1rem);
+
+    & > .vp__vf-fila {
+        width: inherit;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        gap: 0.5rem;
+        background-image: linear-gradient(45deg, #df456815, #fff, #df456815);
+        border-radius: 10px;
+        padding: 1rem;
+        border: none;
+        width: 95%;
+        max-width: 1000px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            backdrop-filter: blur(5px);
+            transform: scale(1.05);
+        }
+
+        & > .vp__vf-num {
+            color: #df4568;
+            font-weight: 700;
+            width: 25px;
+        }
+
+        & > .vp__vf-texto {
+            width: 100%;
+        }
+
+        & > .vp__vf-resp {
+            width: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        & > .vp__vf-cajas {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+
+            & > span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #df4568;
+                color: #000;
+                background-color: #ffffff90;
+                padding: 0.5rem 0.8rem;
+                border-radius: 0.1rem;
+            }
+        }
+    }
+}
+
+/* Completar Vocales */
+.vp__completar-vocales {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    & > .vp__instruccion-cv {
+        font-size: 0.8rem;
+        color: #000;
+        backdrop-filter: blur(5px);
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
+
+    & > .vp__grid-cv {
+        border: none;
+        display: grid;
+        gap: 1rem;
+
+        & > .vp__celda-cv {
+            border: none;
+            background: #df456810;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            gap: 0.5rem;
+            padding: 1rem;
+
+            &:hover {
+                transform: translateY(-5px);
+                background: #df4568;
+                cursor: pointer;
+
+                & > .vp__palabra-cv {
+                    color: #fff;
+                }
+            }
+
+            & > .vp__img-cv-wrap > img {
+                border-radius: 5px;
+            }
+
+            & > .vp__palabra-cv {
+                color: #000;
+                font-size: 0.5rem;
+                font-weight: 500;
+                letter-spacing: 3.5px;
+                text-align: center;
+                line-height: 2;
+                transition: color 0.2s ease;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .vp__header {
+        align-items: start !important;
+    }
+
+    .vp__header > .act__titulo {
+        flex: 1;
+        text-overflow: ellipsis;
+    }
+
+    /* Sopa letras */
+    .vp__acciones {
+        flex-direction: column;
+    }
+
+    .vp__celda {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .vp__lista-palabras ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .vp__lista-palabras li {
+        font-size: 0.6rem;
+        min-width: 0;
+    }
+
+    /* crucigrama */
+
+    .vp__pistas {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .vp__celda-cruz {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .vp__numero {
+        font-size: 0.3rem;
+    }
+
+    .vp__letra-cruz {
+        font-size: 0.4rem;
+    }
+
+    /* ------------------------------------ */
+
+    /* Verdadero Falso ( sin esitlo )*/
+
+    /* ------------------------------------ */
+
+    /* Completar con vocales */
+
+    .vp__instruccion-cv {
+        font-size: 2.5dvw !important;
+    }
+
+    .vp__celda-cv {
+        padding: 0.5rem !important;
+        min-width: 60px;
+        max-width: 60px;
+
+        & > .vp__img-cv-wrap > img {
+            max-width: 30px;
+            max-height: 30px;
+        }
+
+        & > .vp__palabra-cv {
+            font-size: 1.5dvw !important;
+            letter-spacing: 0.5px !important;
+        }
+    }
+}

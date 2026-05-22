@@ -1,0 +1,169 @@
+.copilot {
+    display: flex;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background-image: url('../assets/background-base4.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.copilot__overlay {
+    position: fixed;
+    display: none;
+    inset: 0;
+    background: transparent;
+    backdrop-filter: blur(3px);
+    z-index: 10;
+}
+
+.copilot__main {
+    flex: 1;
+    display: flex;
+    min-width: 0;
+}
+
+/* .copilot__btn-menu {
+    display: none;
+    position: fixed;
+    width: 35px;
+    height: 35px;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    backdrop-filter: blur(3px);
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: white;
+    }
+} */
+
+.copilot__btn-menu {
+    display: none;
+    border: none;
+    cursor: pointer;
+    background-color: #df4568;
+}
+
+.copilot__chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.copilot__bienvenida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.copilot__bienvenida-logo {
+    width: 150px;
+    height: 150px;
+    background-image: url('/icon-logo_48x48.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: logoAnimacion ease-in-out 1s;
+    position: relative;
+}
+
+@keyframes logoAnimacion {
+    0% {
+        top: -150px;
+        transform: scale(2);
+    }
+    100% {
+        top: 0;
+        transform: scale(1);
+    }
+}
+
+.copilot__bienvenida-titulo {
+    font-weight: 700;
+    color: #000;
+    line-height: 1;
+}
+
+.copilot__bienvenida-sub {
+    font-size: 1rem;
+    color: #000;
+    margin: 0;
+    line-height: 1;
+}
+
+.copilot__bienvenida-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: calc(100% + 1rem);
+    margin-top: 1rem;
+}
+
+.copilot__bienvenida-cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid #df4568;
+    color: #000;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: transparent;
+    transition:
+        background-color 0.3s ease,
+        color 0.2s ease;
+
+    & > svg {
+        max-width: 35px;
+    }
+
+    & > span {
+        width: 70%;
+        text-align: left;
+    }
+}
+
+.copilot__bienvenida-cta:hover {
+    background-color: #df4568;
+    color: #fff;
+}
+
+.copilot__actividades {
+    width: 100%;
+    min-height: 100dvh;
+}
+
+@media (max-width: 768px) {
+    .copilot__overlay {
+        display: block;
+    }
+
+    .copilot__btn-menu {
+        display: flex;
+        justify-content: center;
+        position: sticky;
+        height: 100dvh;
+        z-index: 10;
+        padding: 0 0.5rem;
+
+        & > svg {
+            width: 20px;
+        }
+    }
+}

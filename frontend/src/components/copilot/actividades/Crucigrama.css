@@ -1,0 +1,26 @@
+.crucigrama {
+    width: 100%;
+    height: 100dvh;
+    overflow-y: auto;
+}
+
+.crucigrama__fila {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.crucigrama__inp-palabra {
+    flex: 0 0 140px;
+    min-width: 0;
+}
+
+.crucigrama__inp-pista {
+    flex: 1;
+    min-width: 160px;
+}
+
+@media (max-width: 600px) {
+}

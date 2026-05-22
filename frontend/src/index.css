@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: 'Livvic', sans-serif;
+    font-weight: 400;
+}
+
+:root {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Scroll en Chrome, Edge y Safari (WebKit) */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #fff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #df4568;
+        border: none;
+    }
+}

@@ -1,0 +1,145 @@
+/* VerifyCodePage.css*/
+
+.pagina-verificar-otp {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    background: #fff;
+    overflow: hidden;
+}
+
+.pagina-verificar-otp::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/background-teachers-right.png'), url('../assets/background-teachers-left.png');
+    background-repeat: no-repeat;
+    background-size: contain, contain;
+    background-position:
+        right center,
+        left center;
+    /* pointer-events: none; */
+}
+
+#contenedor-verificacion-otp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+    max-width: 550px;
+    z-index: 1;
+    gap: 2rem;
+}
+
+#contenedor-verificacion-otp > .pagina-verificar-otp__ilustracion-error {
+    max-width: 120px;
+}
+
+.pagina-verificar-otp__cabecera {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pagina-verificar-otp__icono-correo {
+    background-image: url('../assets/icon-mail.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    animation: mov-mail 2s ease-in-out infinite;
+}
+
+@keyframes mov-mail {
+    0% {
+        transform: rotate(0deg);
+    }
+    5% {
+        transform: rotate(12deg);
+    }
+    10% {
+        transform: rotate(-12deg);
+    }
+    15% {
+        transform: rotate(10deg);
+    }
+    20% {
+        transform: rotate(-10deg);
+    }
+    25% {
+        transform: rotate(6deg);
+    }
+    30% {
+        transform: rotate(-6deg);
+    }
+    35% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.pagina-verificar-otp__titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #df4568;
+}
+
+.pagina-verificar-otp__subtitulo {
+    font-size: 1rem;
+    color: #000;
+}
+
+/* Estado sin datos válidos */
+.pagina-verificar-otp__aviso-sin-datos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.pagina-verificar-otp__texto-sin-datos {
+    color: #000;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.pagina-verificar-otp__boton-ir-inicio {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #df4568;
+    border: 1px solid #df4568;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: #fff;
+        color: #df4568;
+        position: relative;
+    }
+}
+
+/* Ajuste para movil & tablet */
+@media (max-width: 1247px) {
+    .pagina-verificar-otp::before {
+        background-image: url('../assets/background-base7.png');
+        background-size: cover;
+        background-position: center;
+        filter: blur(3px);
+    }
+}

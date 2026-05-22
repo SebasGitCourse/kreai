@@ -1,0 +1,151 @@
+/* LoginForm.css */
+
+.formulario-inicio-sesion {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    animation: movimiento-entrada 1s ease;
+}
+
+@keyframes movimiento-entrada {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/*  Grupo de campo  */
+.formulario-inicio-sesion__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formulario-inicio-sesion__etiqueta {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 1rem;
+}
+
+/*  Inputs  */
+.formulario-inicio-sesion__campo {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.8rem;
+    font-family: inherit;
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: solid 1px transparent;
+    border-radius: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.formulario-inicio-sesion__campo::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.formulario-inicio-sesion__campo--invalido {
+    border-color: #ef4444;
+    background-color: transparent;
+}
+
+/*  Mensajes de error  */
+.formulario-inicio-sesion__error-campo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: #ef4444;
+    font-weight: bold;
+    animation: sacudir-error 0.35s ease;
+}
+
+@keyframes sacudir-error {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-4px);
+    }
+    40% {
+        transform: translateX(4px);
+    }
+    60% {
+        transform: translateX(-3px);
+    }
+    80% {
+        transform: translateX(3px);
+    }
+}
+
+.formulario-inicio-sesion__error-campo::before {
+    content: '⚠';
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+/*  Alerta de error global  */
+.formulario-inicio-sesion__alerta-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #ffefef;
+    border: 1.5px solid #ef4444;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.formulario-inicio-sesion__alerta-error::before {
+    content: '⚠';
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/*  Botón principal  */
+.formulario-inicio-sesion__boton-continuar {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    color: #ffffff;
+    background-color: #df4568;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0px 10px #df4866cc;
+    }
+}
+
+/*  Pie de formulario  */
+.formulario-inicio-sesion__pie-texto {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.formulario-inicio-sesion__enlace-registro {
+    color: #df4568;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+}
+
+.formulario-inicio-sesion__enlace-registro:hover {
+    border-bottom-color: #df4568;
+}

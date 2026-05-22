@@ -1,0 +1,161 @@
+/* RegisterForm.css */
+
+.formulario-nuevo-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    animation: movimiento-entrada 1s ease;
+}
+
+@keyframes movimiento-entrada {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.formulario-nuevo-usuario__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formulario-nuevo-usuario__etiqueta {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000000;
+    padding-left: 1rem;
+}
+
+.formulario-nuevo-usuario__campo {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.8rem;
+    font-family: inherit;
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: solid 1px transparent;
+    border-radius: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.formulario-nuevo-usuario__campo::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.formulario-nuevo-usuario__campo--invalido {
+    border-color: #ef4444;
+    background-color: transparent;
+}
+
+/*  Fila de nombres + apellidos en dos columnas  */
+.formulario-nuevo-usuario__fila-nombre-apellido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 460px) {
+    .formulario-nuevo-usuario__fila-nombre-apellido {
+        grid-template-columns: 1fr;
+    }
+}
+
+/*  Mensajes de error  */
+.formulario-nuevo-usuario__error-campo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: #ef4444;
+    font-weight: bold;
+    animation: sacudir-registro 0.35s ease;
+}
+
+@keyframes sacudir-registro {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-4px);
+    }
+    40% {
+        transform: translateX(4px);
+    }
+    60% {
+        transform: translateX(-3px);
+    }
+    80% {
+        transform: translateX(3px);
+    }
+}
+
+.formulario-nuevo-usuario__error-campo::before {
+    content: '⚠';
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.formulario-nuevo-usuario__alerta-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #ffefef;
+    border: 1.5px solid #ef4444;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.formulario-nuevo-usuario__alerta-error::before {
+    content: '⚠';
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/*  Botón  */
+.formulario-nuevo-usuario__boton-crear {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    color: #ffffff;
+    background-color: #df4568;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0px 10px #df4866cc;
+    }
+}
+
+/*  Pie  */
+.formulario-nuevo-usuario__pie-texto {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.formulario-nuevo-usuario__enlace-login {
+    color: #df4568;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+}
+
+.formulario-nuevo-usuario__enlace-login:hover {
+    border-bottom-color: #df4568;
+}

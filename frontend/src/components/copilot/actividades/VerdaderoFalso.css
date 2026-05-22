@@ -1,0 +1,26 @@
+.verdadero-falso {
+    width: 100%;
+    height: 100dvh;
+    overflow-y: auto;
+}
+
+.vf__fila {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.vf__inp {
+    flex: 1;
+    min-width: 180px;
+}
+
+.vf__sel {
+    flex-shrink: 0;
+    width: 120px;
+}
+
+@media (max-width: 600px) {
+}

@@ -1,0 +1,208 @@
+.cont_completar-vocales {
+    width: 100%;
+    height: 100dvh;
+    overflow-y: auto;
+
+    & > .cv__edicion-detalle {
+        color: #000;
+        margin-top: -1rem;
+        padding-left: 1rem;
+    }
+}
+
+.cv__lab-instruccion,
+.cv__lab-tema {
+    max-width: none; /*Para ocupar el 100% del ancho */
+
+    & > .cv__inp-instruccion,
+    .cv__inp-tema {
+        width: inherit;
+    }
+}
+
+.cv__sugerencias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 5px;
+
+    & > .cv__chip-sugerencia {
+        background-color: #df456810;
+        border: 1px solid #df4568;
+        color: #00000090;
+        border-radius: 1rem;
+        padding: 0.3rem 1rem;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.7rem;
+
+        &:hover {
+            background-color: #df4568;
+            color: #fff;
+        }
+    }
+}
+
+/*  Separador "o"  */
+.cv__separador {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.8rem;
+    width: 100%;
+    padding-right: 1rem;
+    margin-bottom: 0.8rem;
+
+    & > hr {
+        border: none;
+        background-color: #df4568;
+        height: 1px;
+        width: 100%;
+    }
+}
+
+.cv__separador + div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    & > .act__seccion-titulo {
+        width: 100%;
+    }
+}
+
+/*  Descripción modo manual  */
+.cv__descripcion-manual {
+    width: fit-content;
+    font-size: 0.8rem;
+    color: #000;
+}
+
+/*  Estado cargando  */
+.cv__cargando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 3rem 1rem;
+    text-align: center;
+
+    & > .cv__spinner-grande {
+        width: 2rem;
+        height: 2rem;
+        border-width: 3px;
+        border: 2px solid #df4568;
+        border-top-color: #df456850;
+    }
+
+    & > .cv__cargando-titulo {
+        font-size: 1rem;
+        color: #000;
+        font-weight: 500;
+    }
+
+    & > .cv__cargando-detalle {
+        font-size: 0.8rem;
+        color: #00000090;
+        margin-top: 5px;
+    }
+}
+
+/*  Chips de palabras en edición  */
+.cv__chips-palabras {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.cv__chip-palabra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background-color: #df456810;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    transition: border 0.2s;
+    min-width: 250px;
+
+    &:hover {
+        border: 1px solid #df4568;
+    }
+
+    & > .cv__chip-img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 0.3rem;
+    }
+
+    & > .cv__chip-img-fallback {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        background: #fff;
+        border-radius: 0.3rem;
+    }
+
+    & > .cv__chip-texto {
+        width: 100%;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        font-weight: 500;
+        color: #000;
+        text-transform: uppercase;
+    }
+}
+
+/*  Agregar palabra  */
+.cv__agregar {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+
+    & > .cv__input-palabra {
+        width: 100%;
+    }
+
+    & > button > .act__spinner {
+        border: 2px solid #fff;
+        border-top-color: transparent;
+    }
+}
+
+.cv__edicion-detalle,
+.cv__error-imagen {
+    margin-top: 0.5rem;
+    margin-left: 0.8rem;
+    font-size: 0.8rem;
+    color: #df4568;
+}
+
+/*  Vacío  */
+.cv__vacio {
+    font-size: 0.8rem;
+    color: #00000090;
+}
+
+/*  Responsivo  */
+@media (max-width: 600px) {
+    .cv__chips-palabras {
+        gap: 8px;
+    }
+
+    .cv__input-palabra {
+        width: 100%;
+    }
+}

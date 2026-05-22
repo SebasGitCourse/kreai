@@ -1,0 +1,143 @@
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    padding: 0.5rem 0.6rem;
+    max-width: 200px;
+    min-width: 0;
+    background-color: #df4568;
+    border-radius: 0.5rem;
+}
+
+/* Estilo para el contexto de entrada de mensaje */
+.chip--bib_entMensaje {
+    min-width: 50%;
+    max-width: 50%;
+    background-color: transparent;
+    border-left: 5px solid #df4568;
+
+    & > .chip__info > .chip__nombre {
+        color: #000;
+
+        & + .chip__peso {
+            color: #00000080;
+        }
+    }
+}
+
+.chip--clicable {
+    cursor: pointer;
+}
+
+.chip__thumb {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.3rem;
+    object-fit: cover;
+    border: none;
+    flex-shrink: 0;
+}
+
+.chip__icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chip__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    min-width: 0;
+}
+
+.chip__nombre {
+    font-size: 0.8rem;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+}
+
+.chip__peso {
+    font-size: 0.7rem;
+    color: #ffffff80;
+}
+
+.chip__quitar {
+    background: none;
+    border: none;
+    color: #ffffff80;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+    transition: color 0.15s;
+    &:hover {
+        color: #fff;
+    }
+}
+
+/* Lightbox */
+.chip__lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+    animation: lb-in 0.2s ease-out;
+}
+
+@keyframes lb-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.chip__lightbox-cerrar {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: #ffffff10;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.chip__lightbox-cerrar:hover {
+    background: #df4568;
+}
+
+.chip__lightbox-img {
+    max-width: 80vw;
+    max-height: 80dvh;
+    object-fit: contain;
+    border-radius: 1rem;
+    cursor: default;
+}
+
+.chip__lightbox-nombre {
+    margin-top: 1rem;
+    color: #ffffff80;
+    font-size: 0.8rem;
+    text-align: center;
+}

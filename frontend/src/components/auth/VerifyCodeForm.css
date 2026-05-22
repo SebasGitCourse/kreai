@@ -1,0 +1,219 @@
+/* VerifyCodeForm.css  */
+
+.formulario-verificar-codigo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+/*Texto descriptivo*/
+.formulario-verificar-codigo__descripcion {
+    font-size: 1rem;
+    color: #00000080;
+    text-align: center;
+    line-height: 2;
+    font-weight: 500;
+}
+
+.formulario-verificar-codigo__correo-resaltado {
+    font-weight: bold;
+    color: #df4568;
+    word-break: break-all;
+}
+
+/*Grupo del campo OTP*/
+.formulario-verificar-codigo__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.formulario-verificar-codigo__etiqueta {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+}
+
+/*Input OTP grande*/
+.formulario-verificar-codigo__input-otp {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: inherit;
+    color: #000;
+    background: #fff;
+    border: 2px solid #df4568;
+    border-radius: 1rem;
+    outline: none;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.formulario-verificar-codigo__input-otp::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.5rem;
+}
+
+.formulario-verificar-codigo__input-otp:focus {
+    border-color: #df4568;
+}
+
+/* En caso de manipular el DOM "envios no validos" */
+.formulario-verificar-codigo__input-otp--invalido {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+.formulario-verificar-codigo__error-campo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #ef4444;
+    font-weight: bold;
+    text-align: center;
+    animation: sacudir-otp 0.35s ease;
+}
+
+@keyframes sacudir-otp {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-5px);
+    }
+    40% {
+        transform: translateX(5px);
+    }
+    60% {
+        transform: translateX(-3px);
+    }
+    80% {
+        transform: translateX(3px);
+    }
+}
+
+.formulario-verificar-codigo__error-campo::before {
+    content: '⚠';
+    font-size: 0.8rem;
+}
+
+/*Alertas*/
+.formulario-verificar-codigo__alerta-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #ef444410;
+    border: none;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.formulario-verificar-codigo__alerta-error::before {
+    content: '⚠';
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.formulario-verificar-codigo__alerta-exito {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #55eb9a;
+    border: none;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    color: #000;
+    font-weight: bold;
+}
+
+.formulario-verificar-codigo__alerta-exito::before {
+    content: '✓';
+    flex-shrink: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/*Botón confirmar*/
+.formulario-verificar-codigo__boton-confirmar {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    color: #fff;
+    background-color: #df4568;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0px 10px #df4568cc;
+    }
+}
+
+/* Estado deshabilitado del botón */
+.formulario-verificar-codigo__boton-confirmar:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+}
+
+/*Zona de reenvío*/
+.formulario-verificar-codigo__zona-reenvio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.formulario-verificar-codigo__temporizador {
+    font-size: 0.8rem;
+    color: #000;
+    text-align: center;
+}
+
+.formulario-verificar-codigo__temporizador > strong {
+    color: #df4568;
+    font-weight: bold;
+}
+
+.formulario-verificar-codigo__texto-reenvio {
+    font-size: 0.8rem;
+    color: #00000080;
+}
+
+.formulario-verificar-codigo__boton-reenviar,
+.formulario-verificar-codigo__boton-cambiar-correo {
+    font-family: inherit;
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.formulario-verificar-codigo__boton-reenviar {
+    color: #df4568;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+        text-underline-offset: 5px;
+    }
+}
+
+.formulario-verificar-codigo__boton-cambiar-correo {
+    color: #00000080;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}

@@ -1,0 +1,196 @@
+.burbuja {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    align-items: flex-start;
+}
+
+.burbuja--usuario {
+    flex-direction: row-reverse;
+}
+
+.burbuja__avatar {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    background-color: #ffffff90;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.burbuja__avatar-usuario {
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: #df4568;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.burbuja__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 70%;
+}
+
+.burbuja--usuario .burbuja__cuerpo {
+    align-items: flex-end;
+}
+
+.burbuja--asistente .burbuja__cuerpo {
+    align-items: flex-start;
+}
+
+.burbuja__archivos {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.burbuja__texto {
+    padding: 0.5rem 0.8rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.burbuja__ver-mas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 0.6rem;
+    color: #df4568;
+    padding: 0.15rem 0.5rem;
+    background-color: #fff;
+}
+
+.burbuja--usuario .burbuja__texto {
+    background-color: #ffffff90;
+    color: #000;
+    border-bottom-right-radius: 0.3rem;
+    border: 1px solid #df4568;
+}
+
+.burbuja--asistente .burbuja__texto {
+    background-color: #df456810;
+    color: #000;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.burbuja__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: #000;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    cursor: default;
+    animation: parpadear 0.9s ease-in-out infinite;
+}
+
+@keyframes parpadear {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.burbuja__escribiendo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.8rem 0.9rem;
+    background: #df4568;
+    border-radius: 1rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.burbuja__escribiendo span {
+    width: 6px;
+    height: 6px;
+    background: #ffffff90;
+    border-radius: 50%;
+    animation: rebotar 1.2s ease-in-out infinite;
+}
+
+.burbuja__escribiendo span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.burbuja__escribiendo span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes rebotar {
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    30% {
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+}
+
+.burbuja__error-inline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background: #ffffff90;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    max-width: 320px;
+}
+
+.burbuja__error-icono {
+    color: #df4568;
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.burbuja__error-texto {
+    font-size: 0.7rem;
+    color: #df4568;
+    line-height: 1.5;
+}
+
+.burbuja__btn-reintentar {
+    background: #fff;
+    border: 1px solid #df4568;
+    color: #df4568;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .burbuja__cuerpo {
+        max-width: 88%;
+    }
+}
