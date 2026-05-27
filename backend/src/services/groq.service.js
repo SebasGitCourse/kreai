@@ -3,7 +3,7 @@ import mammoth from 'mammoth';
 import PDFParser from 'pdf2json';
 
 const MODELO_PRINCIPAL = process.env.GROQ_MODEL_PRIMARY || 'openai/gpt-oss-120b';
-const MODELO_FALLBACK = process.env.GROQ_MODEL_FALLBACK || 'llama-3.1-8b-instant';
+const MODELO_FALLBACK = process.env.GROQ_MODEL_FALLBACK || 'openai/gpt-oss-20b';
 
 const PROMPT_SISTEMA =
     'Eres KreAI, asistente educativo exclusivo para docentes de primaria en Colombia ' +
@@ -102,17 +102,26 @@ async function llamarGroq(modelo, mensajes, opciones = {}) {
     const params = {
         model: modelo,
         messages: mensajes,
-        max_tokens: opciones.maxTokens || 2048,
-        temperature: opciones.temperatura ?? 0.7,
+        max_completion_tokens: opciones.maxTokens || 1500,
+        temperature: opciones.temperatura ?? 0.5,
         stream: opciones.stream || false,
     };
 
-    if (opciones.formatoRespuesta) params.response_format = opciones.formatoRespuesta;
+    // Usa razonamiento bajo por defecto cuando se indique.
+    // Mantiene buena calidad sin gastar tokens innecesarios.
+    if (opciones.reasoningEffort) {
+        params.reasoning_effort = opciones.reasoningEffort;
+    }
+
+    // Se mantiene para generar JSON válido en actividades.
+    if (opciones.formatoRespuesta) {
+        params.response_format = opciones.formatoRespuesta;
+    }
 
     return groq.chat.completions.create(params);
 }
 
-async function llamarConBusqueda(mensajes) {
+async function llamarConBusquedaModelo(modelo, mensajes) {
     // Se incluye el historial completo para que el modelo tenga contexto
     // de conversaciones previas, por ejemplo si el usuario dice
     // "busca de nuevo lo que te pedí antes"
@@ -123,25 +132,40 @@ async function llamarConBusqueda(mensajes) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            model: MODELO_PRINCIPAL,
+            model: modelo,
             messages: mensajes,
-            max_completion_tokens: 550,
-            temperature: 1,
+            max_completion_tokens: 800,
+            temperature: 0.3,
             reasoning_effort: 'low',
             stream: false,
-            tool_choice: 'auto',
+            tool_choice: 'required',
             tools: [{ type: 'browser_search' }],
         }),
     });
 
     if (!respuesta.ok) {
         const err = await respuesta.text();
-        throw new Error(`Groq browser_search (${respuesta.status}): ${err}`);
+        throw new Error(`Groq browser_search con ${modelo} (${respuesta.status}): ${err}`);
     }
 
-    console.log('BUSQUEDA ACTIVADA');
+    console.log('BUSQUEDA ACTIVADA CON MODELO: ' + modelo);
     const datos = await respuesta.json();
     return datos.choices?.[0]?.message?.content || '';
+}
+
+async function llamarConBusqueda(mensajes) {
+    try {
+        return await llamarConBusquedaModelo(MODELO_PRINCIPAL, mensajes);
+    } catch (err) {
+        console.error('ERROR BUSQUEDA MODELO PRINCIPAL:', err.message);
+
+        if (MODELO_FALLBACK === MODELO_PRINCIPAL) {
+            throw err;
+        }
+
+        console.log('INTENTANDO BUSQUEDA CON MODELO DE RESPALDO');
+        return await llamarConBusquedaModelo(MODELO_FALLBACK, mensajes);
+    }
 }
 
 async function llamarConFallback(mensajes, opciones = {}) {
@@ -179,8 +203,8 @@ async function parsearPDF(buffer, nombreOriginal) {
 
         parser.parseBuffer(buffer);
     });
-} 
- 
+}
+
 // API pública
 
 /**
@@ -300,7 +324,12 @@ export async function generarRespuestaStream(historial, partes, onToken) {
     try {
         console.log('INTENTANDO LLAMADO A GROP CON MODELO PRINCIPAL');
 
-        stream = await llamarGroq(MODELO_PRINCIPAL, mensajesApi, { stream: true, maxTokens: 2048 });
+        stream = await llamarGroq(MODELO_PRINCIPAL, mensajesApi, {
+            stream: true,
+            maxTokens: 1500,
+            temperatura: 0.5,
+            reasoningEffort: 'medium',
+        });
 
         console.log('MODELO USADO: ' + MODELO_PRINCIPAL);
     } catch (err) {
@@ -309,8 +338,12 @@ export async function generarRespuestaStream(historial, partes, onToken) {
 
         // Si el modelo principal falla por cualquier razón (rate limit, TPD, modelo no disponible, etc.)
         // se intenta con el modelo de respaldo. Si el respaldo también falla, el error sube al llamador.
-        stream = await llamarGroq(MODELO_FALLBACK, mensajesApi, { stream: true, maxTokens: 2048 });
-
+        stream = await llamarGroq(MODELO_FALLBACK, mensajesApi, {
+            stream: true,
+            maxTokens: 1500,
+            temperatura: 0.5,
+            reasoningEffort: 'low',
+        });
         console.log('MODELO USADO: ' + MODELO_FALLBACK);
     }
 
@@ -343,7 +376,8 @@ export async function generarSugerenciaJSON(prompt, descripcionEsquema) {
 
     const resp = await llamarConFallback(mensajes, {
         maxTokens: 1500,
-        temperatura: 0.7,
+        temperatura: 0.2,
+        reasoningEffort: 'low',
         formatoRespuesta: { type: 'json_object' },
     });
 
@@ -363,6 +397,7 @@ export async function verificarConexion() {
         const r = await llamarGroq(MODELO_PRINCIPAL, [{ role: 'user', content: 'ok' }], {
             maxTokens: 100,
             temperatura: 0,
+            reasoningEffort: 'low',
         });
         return !!r.choices[0]?.message?.content;
     } catch {

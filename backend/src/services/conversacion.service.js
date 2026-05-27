@@ -443,7 +443,7 @@ async function construirPartesMensaje(archivos, contenidoTexto) {
     if (contenidoTexto) partes.push({ text: contenidoTexto });
 
     return partes;
-} 
+}
 
 /**
  * Envío de mensaje nuevo.
@@ -599,14 +599,28 @@ export async function reintentarMensajeStream(idConversacion, idMensajeUsuario, 
             escribirSSE(res, { tipo: 'token', contenido: token });
         });
     } catch {
+        console.error('[reintentarMensajeStream] Error al generar respuesta con IA.');
         escribirSSE(res, { tipo: 'error', mensaje: 'Error al reintentar.', recuperable: true });
         return res.end();
     }
 
-    // Actualizar respuesta existente o crear una nueva si no existía
-    const msgAsistente = idMensajeAsistentePrevio
-        ? await actualizarMensaje(idMensajeAsistentePrevio, textoCompleto)
-        : await guardarMensaje(idConversacion, 'asistente', textoCompleto);
+    // Si no existe el mensaje asistente previo es un estado inválido
+    if (!idMensajeAsistentePrevio) {
+        console.error('[reintentarMensajeStream] No se encontró mensaje asistente para actualizar.');
+        escribirSSE(res, { tipo: 'error', mensaje: 'No se encontró la respuesta a regenerar.', recuperable: false });
+        return res.end();
+    }
+
+    // Se actualiza el mensaje del asistente en lugar de crear uno nuevo,
+    // para evitar registros basura por múltiples reintentos
+    let msgAsistente;
+    try {
+        msgAsistente = await actualizarMensaje(idMensajeAsistentePrevio, textoCompleto);
+    } catch (err) {
+        console.error('[reintentarMensajeStream] Error al actualizar respuesta en BD:', err.message);
+        escribirSSE(res, { tipo: 'error', mensaje: 'Error al guardar la respuesta regenerada. Intenta de nuevo.', recuperable: true });
+        return res.end();
+    }
 
     escribirSSE(res, {
         tipo: 'fin',
@@ -614,5 +628,6 @@ export async function reintentarMensajeStream(idConversacion, idMensajeUsuario, 
         id_mensaje_asistente: msgAsistente.id,
         titulo_actualizado: null,
     });
+
     res.end();
 }
